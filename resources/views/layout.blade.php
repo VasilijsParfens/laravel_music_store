@@ -24,9 +24,20 @@
     <div class="ml-4 mt-10 mb-4 text-4xl font-martian">
         <a href="{{ url('/') }}">MusicStore</a>
     </div>
+    @auth
+    <li>
+        <form class="absolute top-10 right-2 w-24" method="POST" action="/logout">
+          @csrf
+          <button type="submit" class="text-xl hover:underline">
+            Logout
+          </button>
+        </form>
+    </li>
+    @else
     <div class="absolute top-0 right-0 mt-14 mr-14 mb-18">
-        <a href="./authentification/login.html" title="Account"><img src="images/user.png" alt="Account" style="width:34px;"></a>
+        <a href="/login" title="Account"><img src="images/user.png" alt="Account" style="width:34px;"></a>
     </div>
+    @endauth
     <hr class="border-t-2 border-gray-700">
     @yield('content')
 </body>

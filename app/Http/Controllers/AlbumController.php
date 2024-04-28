@@ -1,17 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Album;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class AlbumController extends Controller
 {
-    // Show all albums
+    // Show new albums
     public function index(){
-        return view('albums.index',[
-            'albums' => Album::latest()->filter(request(['search']))->paginate(3)
-        ]);
+
+        // Fetch 9 newest albums by creation date
+        $newestAlbums = Album::latest()->take(9)->get();
+
+        return view('albums.index', compact('newestAlbums'));
     }
 
     // Show single album
@@ -66,6 +70,25 @@ class AlbumController extends Controller
         }
 
         $album->update($formFields);
+
+        return redirect('/');
+    }
+
+    public function purchase(Request $request){
+        // Check if user is authenticated
+        if (!Auth::check()) {
+            return redirect()->route('users.login')->with('error', 'Please login to purchase this album.');
+        }
+
+        // Get authenticated user
+        $user = Auth::user();
+
+        // Create a new order
+        $order = new Order();
+        $order->user_id = $user->id;
+        $order->album_id = $request->album_id;
+        $order->purchase_price = $request->purchase_price;
+        $order->save();
 
         return redirect('/');
     }

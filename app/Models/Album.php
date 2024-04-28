@@ -17,4 +17,9 @@ class Album extends Model
                 ->orWhere('artist', 'like', '%' . request('search') . '%');
         }
     }
+
+    // Album - Order relation
+    public function orders() {
+        return $this->hasMany(Order::class);
+    }
 }

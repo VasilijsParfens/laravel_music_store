@@ -23,6 +23,14 @@
             </p>
         </div>
     </div>
+    @auth
+        <form action="{{ route('purchase') }}" method="post">
+            @csrf
+            <input type="hidden" name="album_id" value="{{ $album->id }}">
+            <input type="hidden" name="purchase_price" value="{{ $album->price }}">
+            <button type="submit" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">Purchase</button>
+        </form>
+    @endauth
 </div>
 
 

@@ -60,7 +60,7 @@
 
     <div class="mb-6">
       <button class="bg-red-600 text-white rounded py-2 px-4 hover:bg-black">
-        Create album
+        Update album
       </button>
       <a href="/" class="text-black ml-4"> Back </a>
     </div>

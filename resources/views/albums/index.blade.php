@@ -7,17 +7,19 @@
     <div class="relative">
         <img class="opacity-85" src="images/mick-haupt-vGXHIh3URzc-unsplash.jpg" alt="music store image" loading="lazy">
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex gap-x-20">
-            <div class="bg-white w-64 h-12 rounded-md border border-black font-martian flex justify-center items-center hover:bg-slate-200 ease-in-out duration-100">
-                <a href="/library">Your library</a>
-            </div>
+            <a href="/library">
+                <div class="bg-white w-64 h-12 rounded-md border border-black font-martian flex justify-center items-center hover:bg-slate-200 ease-in-out duration-100">
+                    <p>Your library</p>
+                </div>
+            </a>
             <button class="bg-white w-64 h-12 rounded-md border border-black inline font-martian hover:bg-slate-200 ease-in-out duration-100" onclick="window.location.href='./product_categories/cds.html'">Browse</button>
             <button class="bg-white w-64 h-12 rounded-md border border-black inline font-martian hover:bg-slate-200 ease-in-out duration-100" onclick="window.location.href='./product_categories/digital.html'">Purchase history</button>
         </div>
     </div>
 </div>
-<hr class="border-t-2 border-gray-700 mb-4">
+
 <h4 class="justify-center text-4xl text-center">Newest arrivals</h4>
-<hr class="border-t-2 border-gray-700 mt-4">
+<hr class="border-t-2 border-gray-700 mt-4 w-1/3 mx-auto">
 <div class="grid gap-x-0.5 gap-y-4 grid-cols-3 mt-6">
     @if(count($newestAlbums) > 0)
         @foreach($newestAlbums as $album)

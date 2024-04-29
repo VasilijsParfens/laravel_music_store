@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Album;
+use App\Models\Comment;
+use App\Models\Rating;
+use App\Models\AssignedRating;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
@@ -27,6 +30,11 @@ Route::get('/', [AlbumController::class, 'index']);
 
 // Single album
 Route::get('/albums/{album}', [AlbumController::class, 'show']);
+
+// Route to handle assignment of rating
+Route::post('/albums/{album}', [AlbumController::class, 'assignRating']);
+
+Route::get('/albums/{album}', [AlbumController::class, 'showAlbum']);
 
 // Store comments
 Route::post('/albums/{album}', [AlbumController::class, 'storeComment']);

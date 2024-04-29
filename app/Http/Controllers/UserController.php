@@ -13,6 +13,19 @@ class UserController extends Controller
         return view('users.register');
     }
 
+    // Show user list for admin
+    public function user_list(){
+        return view('users.user_list');
+    }
+
+    // Show all users
+    public function showAllUsers(){
+
+        $users = User::all();
+
+        return view('users.user_list', compact('users'));
+    }
+
     // Create user
     public function store(Request $request) {
         $formFields = $request->validate([
@@ -32,6 +45,12 @@ class UserController extends Controller
 
         // Go to homepage after registration
         return redirect('/');
+    }
+
+    // Delete user
+    public function destroy(User $user) {
+        $user->delete();
+        return redirect('/user_list')->with('message', 'User deleted successfully');
     }
 
     // Show login form

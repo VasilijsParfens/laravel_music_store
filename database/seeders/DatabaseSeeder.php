@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
 
         Album::create([
             'title' => 'Born This Way',
-            'album_cover' => 'album_covers/Born_This_Way.jpg',
+            'album_cover' => 'album_covers/Born_This_Way_album_cover.jpg',
             'artist' => 'Lady Gaga',
             'release_year' => '2011',
             'description' => "Born This Way is the second studio album by American singer Lady Gaga, released by Interscope Records on May 23, 2011. It was co-written and co-produced by Gaga with other producers, including Fernando Garibay and RedOne, who had previously worked with her.",
@@ -60,5 +60,6 @@ class DatabaseSeeder extends Seeder
             'description' => "Born to Die is the second studio album and major-label debut by American singer-songwriter Lana Del Rey. It was released on January 27, 2012, through Interscope Records and Polydor Records. A reissue of the album, subtitled The Paradise Edition, was released on November 9, 2012. The new material from the reissue was also made available on a separate EP titled Paradise. ",
             'price' => 24.99,
         ]);
+
     }
 }

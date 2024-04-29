@@ -34,23 +34,11 @@
             @endif
         @else
             <div class="mt-4">
-                <p>Please <a href="{{ route('login') }}" class="text-blue-500">login</a> to purchase this album.</p>
+                <p>Please <a href="/login" class="text-blue-500">login</a> to purchase this album.</p>
             </div>
         @endauth
     </div>
 </div>
-<form method="post" action="/albums/assignRating">
-    @csrf
-    <input type="hidden" name="album_id" value="{{ $album->id }}">
-    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-    <label for="rating_id">Assign Rating:</label>
-    <select name="rating_id" id="rating_id">
-        @foreach($ratings as $rating)
-            <option value="{{ $rating->id }}">{{ $rating->rating_title }}</option>
-        @endforeach
-    </select>
-    <button type="submit">Assign Rating</button>
-</form>
 <div class="flex justify-center mt-8">
     <form method="post" action="/albums/comment" class="flex items-center w-1/2">
         @csrf

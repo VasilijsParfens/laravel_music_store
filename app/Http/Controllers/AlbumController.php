@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 use App\Models\Album;
 use App\Models\Order;
 use App\Models\Comment;
+
 
 use Illuminate\Http\Request;
 
@@ -18,6 +20,19 @@ class AlbumController extends Controller
         $newestAlbums = Album::latest()->take(9)->get();
 
         return view('albums.index', compact('newestAlbums'));
+    }
+
+    // Show album list for admin
+    public function album_list(){
+        return view('albums.album_list');
+    }
+
+    // Show all albums
+    public function showAllAlbums(){
+
+        $albums = Album::all();
+
+        return view('albums.album_list', compact('albums'));
     }
 
     // Show single album
@@ -73,9 +88,16 @@ class AlbumController extends Controller
 
         $album->update($formFields);
 
-        return redirect('/');
+        return redirect('/album_list');
     }
 
+    // Delete album
+    public function destroy(Album $album) {
+        $album->delete();
+        return redirect('/album_list')->with('message', 'Album deleted successfully');
+    }
+
+    // Purchase album
     public function purchase(Request $request){
         // Check if user is authenticated
         if (!Auth::check()) {
@@ -116,4 +138,22 @@ class AlbumController extends Controller
         $comments = $album->comments()->with('user')->get();
         return view('albums.show', compact('album', 'comments'));
     }
+
+    // Show comment list for admin
+    public function comment_list(){
+        return view('albums.comment_list');
+    }
+
+    // Show all comments
+    public function showAllComments(){
+        $comments = Comment::all();
+        return view('albums.comment_list', compact('comments'));
+    }
+
+    // Delete comment
+    public function destroy_comment(Comment $comment) {
+        $comment->delete();
+        return redirect('/comment_list');
+    }
+
 }

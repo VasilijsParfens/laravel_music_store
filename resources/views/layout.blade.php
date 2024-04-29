@@ -22,7 +22,7 @@
 
 <body class="bg-orange-50 font-mono">
     <div class="ml-4 mt-10 mb-4 text-4xl font-martian">
-        <a href="{{ url('/') }}">MusicStore</a>
+        <a href="/">MusicStore</a>
     </div>
     @auth
     <li>
@@ -39,6 +39,15 @@
     </div>
     @endauth
     <hr class="border-t-2 border-gray-700">
+    <li>
+        <!-- Conditionally display Admin panel link -->
+        <div class="absolute top-10 right-44 w-32">
+            @if(auth()->check() && auth()->user()->is_admin)
+                <a href="/album_list" class="text-xl hover:underline">Admin Panel</a>
+            @endif
+        </div>
+    </li>
+
     @yield('content')
 </body>
 </html>

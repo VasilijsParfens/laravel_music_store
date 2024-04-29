@@ -32,10 +32,10 @@
                                 <p class="text-gray-400 text-xl">{{$album->artist}}</p>
                             </div>
                             <div>
-                                <p class="text-xl">{{$album->title}}</p>
+                                <p class="text-xl w-52">{{$album->title}}</p>
                             </div>
                             <div>
-                                <p class="text-orange-500 text-xl">{{$album->price}}</p>
+                                <p class="text-orange-500 text-xl">{{$album->price}}$</p>
                             </div>
                             <div>
 

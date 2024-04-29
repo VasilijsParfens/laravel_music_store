@@ -35,7 +35,7 @@
     </li>
     @else
     <div class="absolute top-0 right-0 mt-14 mr-14 mb-18">
-        <a href="/login" title="Account"><img src="images/user.png" alt="Account" style="width:34px;"></a>
+        <a href="/login" title="Account"><img src="/images/user.png" alt="Account" style="width:34px;"></a>
     </div>
     @endauth
     <hr class="border-t-2 border-gray-700">

@@ -22,4 +22,10 @@ class Album extends Model
     public function orders() {
         return $this->hasMany(Order::class);
     }
+
+    // Album - Comment relation
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
+
 }

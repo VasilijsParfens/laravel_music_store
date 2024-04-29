@@ -1,4 +1,4 @@
-<form action="/" class="flex justify-center">
+<form action="/" class="flex justify-center mb-11">
     <div class="m-4 rounded-lg">
         <div class="relative flex items-center">
             <div class="absolute left-3">

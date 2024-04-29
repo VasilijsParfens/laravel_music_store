@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\Album;
 use App\Models\Order;
+use App\Models\Comment;
+
 use Illuminate\Http\Request;
 
 class AlbumController extends Controller
@@ -91,5 +93,27 @@ class AlbumController extends Controller
         $order->save();
 
         return redirect('/');
+    }
+
+    public function storeComment(Request $request){
+        $request->validate([
+            'text' => 'required|string',
+            'album_id' => 'required|exists:albums,id',
+        ]);
+
+        $comment = new Comment();
+        $comment->user_id = auth()->id();
+        $comment->album_id = $request->album_id;
+        $comment->text = $request->text;
+        $comment->save();
+
+        return redirect()->back()->with('success', 'Comment posted successfully.');
+    }
+
+    public function showComments($album_id)
+    {
+        $album = Album::findOrFail($album_id);
+        $comments = $album->comments()->with('user')->get();
+        return view('albums.show', compact('album', 'comments'));
     }
 }

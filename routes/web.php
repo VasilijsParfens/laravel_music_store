@@ -27,6 +27,10 @@ Route::get('/', [AlbumController::class, 'index']);
 // Single album
 Route::get('/albums/{album}', [AlbumController::class, 'show']);
 
+Route::post('/albums/{album}', [AlbumController::class, 'storeComment']);
+
+Route::get('/albums/{album}', [AlbumController::class, 'showComments']);
+
 // Show register form
 Route::get('/register', [UserController::class, 'create']);
 

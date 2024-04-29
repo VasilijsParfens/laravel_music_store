@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
 
         Album::create([
             'title' => 'Born This Way',
-            'album_cover' => 'album_covers/t4t25264.jpg',
+            'album_cover' => 'album_covers/Born_This_Way.jpg',
             'artist' => 'Lady Gaga',
             'release_year' => '2011',
             'description' => "Born This Way is the second studio album by American singer Lady Gaga, released by Interscope Records on May 23, 2011. It was co-written and co-produced by Gaga with other producers, including Fernando Garibay and RedOne, who had previously worked with her.",

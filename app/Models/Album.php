@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+
 
 class Album extends Model
 {
@@ -13,8 +15,8 @@ class Album extends Model
 
     public function scopeFilter($query, array $filters) {
         if($filters['search'] ?? false) {
-            $query->where('title', 'like', '%' . request('search') . '%')
-                ->orWhere('artist', 'like', '%' . request('search') . '%');
+            $query->where('title', 'like', '%' . $filters['search'] . '%')
+                  ->orWhere('artist', 'like', '%' . $filters['search'] . '%');
         }
     }
 
@@ -26,6 +28,19 @@ class Album extends Model
     // Album - Comment relation
     public function comments(){
         return $this->hasMany(Comment::class);
+    }
+
+    public function hasBeenPurchased(){
+        // Check if the user is authenticated
+        if (Auth::check()) {
+            // Get the authenticated user
+            $user = Auth::user();
+
+            // Check if there are any orders for this album by the authenticated user
+            return $this->orders()->where('user_id', $user->id)->exists();
+        }
+
+        return false; // Return false if user is not authenticated
     }
 
 }

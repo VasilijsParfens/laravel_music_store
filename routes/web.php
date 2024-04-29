@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Album;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
 use App\Http\Middleware\AdminMiddleware;
 
 Route::group(['middleware' => AdminMiddleware::class], function () {
@@ -27,12 +28,17 @@ Route::get('/', [AlbumController::class, 'index']);
 // Single album
 Route::get('/albums/{album}', [AlbumController::class, 'show']);
 
+// Store comments
 Route::post('/albums/{album}', [AlbumController::class, 'storeComment']);
 
+// Display comments
 Route::get('/albums/{album}', [AlbumController::class, 'showComments']);
 
 // Show register form
 Route::get('/register', [UserController::class, 'create']);
+
+// Users library of purchased items
+Route::get('/library', [OrderController::class, 'showLibrary'])->name('library');
 
 // Create user
 Route::post('/users', [UserController::class, 'store']);

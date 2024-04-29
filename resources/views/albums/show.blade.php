@@ -20,15 +20,22 @@
                 {{$album['price']}}$
             </p>
         </div>
+        <!-- Conditionally show or hide the purchase button -->
         @auth
-        <div class="mt-4">
-            <form action="{{ route('purchase') }}" method="post">
-                @csrf
-                <input type="hidden" name="album_id" value="{{ $album->id }}">
-                <input type="hidden" name="purchase_price" value="{{ $album->price }}">
-                <button type="submit" class="px-6 py-4 bg-red-500 text-xl text-white rounded">Purchase</button>
-            </form>
-        </div>
+            @if(!$album->hasBeenPurchased())
+                <div class="mt-4">
+                    <form action="{{ route('purchase') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="album_id" value="{{ $album->id }}">
+                        <input type="hidden" name="purchase_price" value="{{ $album->price }}">
+                        <button type="submit" class="px-6 py-4 bg-red-500 text-xl text-white rounded">Purchase</button>
+                    </form>
+                </div>
+            @endif
+        @else
+            <div class="mt-4">
+                <p>Please <a href="{{ route('login') }}" class="text-blue-500">login</a> to purchase this album.</p>
+            </div>
         @endauth
     </div>
 </div>
@@ -55,6 +62,5 @@
         </div>
     @endforeach
 </div>
-
 
 @endsection

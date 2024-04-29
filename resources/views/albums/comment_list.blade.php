@@ -51,8 +51,8 @@
                         @foreach($comments as $comment)
                             <tr>
                                 <td class="px-10 py-6 whitespace-nowrap">{{ $comment->id }}</td>
-                                <td class="px-10 py-6 whitespace-nowrap">{{ $comment->user_id }}</td>
-                                <td class="px-10 py-6 whitespace-nowrap">{{ $comment->album_id }}</td>
+                                <td class="px-10 py-6 whitespace-nowrap"><a href="/comments/user/{{ $comment->user_id }}">{{ $comment->user_id }}</a></td>
+                                <td class="px-10 py-6 whitespace-nowrap"><a href="/comments/album/{{ $comment->album_id }}">{{ $comment->album_id }}</a></td>
                                 <td class="px-10 py-6 whitespace-nowrap max-w-[400px] overflow-hidden overflow-ellipsis">{{ $comment->text }}</td>
                                 <td class="px-10 py-6 whitespace-nowrap">
                                     <form method="POST" action="/comments/{{ $comment->id }}" >

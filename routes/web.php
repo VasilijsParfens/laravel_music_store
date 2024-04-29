@@ -3,6 +3,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CommentController;
 use App\Http\Middleware\AdminMiddleware;
 
 Route::group(['middleware' => AdminMiddleware::class], function () {
@@ -42,6 +43,12 @@ Route::group(['middleware' => AdminMiddleware::class], function () {
 
     // Show all comments for admin
     Route::get('/comment_list', [AlbumController::class, 'showAllComments']);
+
+    // Show comments that belong to specific user
+    Route::get('/comments/user/{userId}', [CommentController::class, 'getCommentsByUser']);
+
+    // Show comments that belong to specific album
+    Route::get('/comments/album/{albumId}', [CommentController::class, 'getCommentsByAlbum']);
 
     // Delete comment
     Route::delete('/comments/{comment}', [AlbumController::class, 'destroy_comment']);

@@ -48,8 +48,8 @@
                             <td class="px-10 py-6 whitespace-nowrap">{{ $order->created_at->format('Y-m-d')}}</td>
                     @endforeach
                     <tr>
-                        <td colspan="3" class="px-10 py-6 text-right font-semibold">Total:</td>
-                        <td colspan="2" class="px-10 py-6 whitespace-nowrap">{{ $totalAmount }}</td>
+                        <td colspan="3" class="px-10 py-6 text-right font-semibold">Total sum of your orders:</td>
+                        <td colspan="2" class="px-10 py-6 whitespace-nowrap text-red-800 font-extrabold">{{ $totalAmount }}</td>
                     </tr>
                 </tbody>
             </table>

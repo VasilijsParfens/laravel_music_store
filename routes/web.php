@@ -55,7 +55,16 @@ Route::group(['middleware' => AdminMiddleware::class], function () {
     Route::delete('/comments/{comment}', [AlbumController::class, 'destroy_comment']);
 });
 
-// All albums
+
+Route::get('/browse', [AlbumController::class, 'browseAllAlbums'])->name('albums.browse');
+Route::get('/albums/sort', [AlbumController::class, 'sort'])->name('albums.sort');
+Route::get('/albums/filter', [AlbumController::class, 'filter'])->name('albums.filter');
+
+
+// Display albums in browse section
+Route::get('/browse', [AlbumController::class, 'browseAllAlbums']);
+
+// New albums
 Route::get('/', [AlbumController::class, 'index']);
 
 // Single album

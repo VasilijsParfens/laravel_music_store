@@ -35,6 +35,36 @@ class AlbumController extends Controller
         return view('albums.album_list', compact('albums'));
     }
 
+    public function browseAllAlbums()
+    {
+        $albums = Album::latest()->get(); // Default display
+
+        return view('albums.browse', compact('albums'));
+    }
+
+    public function sort(Request $request)
+    {
+        $sortBy = $request->input('sortBy');
+        $order = $request->input('order');
+
+        $albums = Album::orderBy($sortBy, $order)->get();
+
+        return view('albums.browse', compact('albums'));
+    }
+
+    public function filter(Request $request)
+    {
+        $keyword = $request->input('keyword');
+
+        $albums = Album::where('title', 'like', "%$keyword%")
+            ->orWhere('artist', 'like', "%$keyword%")
+            ->orWhere('release_year', 'like', "%$keyword%")
+            ->orWhere('price', 'like', "%$keyword%")
+            ->get();
+
+        return view('albums.browse', compact('albums'));
+    }
+
     // Show single album
     public function show(Album $album){
         return view('albums.show', [

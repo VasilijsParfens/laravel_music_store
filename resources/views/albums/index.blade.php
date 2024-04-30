@@ -5,7 +5,7 @@
 
 <div class="flex items-center justify-center h-54vh mt-8 mb-8">
     <div class="relative">
-        <img class="opacity-85" src="images/mick-haupt-vGXHIh3URzc-unsplash.jpg" alt="music store image" loading="lazy">
+        <img class="opacity-75" src="images/mick-haupt-vGXHIh3URzc-unsplash.jpg" alt="music store image" loading="lazy">
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex gap-x-20">
             <a href="/library">
                 <div class="bg-white w-64 h-12 rounded-md border border-black font-martian flex justify-center items-center hover:bg-slate-200 ease-in-out duration-100">

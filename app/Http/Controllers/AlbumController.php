@@ -117,6 +117,23 @@ class AlbumController extends Controller
         return redirect('/');
     }
 
+    public function orderHistory(){
+        return view('users.purchase_history');
+    }
+
+    public function thisUserOrders(){
+        $user = auth()->user();
+
+        $orders = $user->orders()->with('album')->latest()->get();
+
+        // Calculate total sum of orders' prices
+        $totalAmount = $orders->sum(function ($order) {
+            return $order->album->price;
+        });
+
+        return view('users.purchase_history', compact('orders', 'totalAmount'));
+    }
+
     public function storeComment(Request $request){
         $request->validate([
             'text' => 'required|string',

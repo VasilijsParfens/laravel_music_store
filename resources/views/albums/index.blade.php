@@ -13,7 +13,11 @@
                 </div>
             </a>
             <button class="bg-white w-64 h-12 rounded-md border border-black inline font-martian hover:bg-slate-200 ease-in-out duration-100" onclick="window.location.href='./product_categories/cds.html'">Browse</button>
-            <button class="bg-white w-64 h-12 rounded-md border border-black inline font-martian hover:bg-slate-200 ease-in-out duration-100" onclick="window.location.href='./product_categories/digital.html'">Purchase history</button>
+            <a href="/comment_history">
+                <div class="bg-white w-64 h-12 rounded-md border border-black font-martian flex justify-center items-center hover:bg-slate-200 ease-in-out duration-100">
+                    <p>History</p>
+                </div>
+            </a>
         </div>
     </div>
 </div>

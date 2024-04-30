@@ -49,4 +49,9 @@ class User extends Authenticatable
     public function comments(){
         return $this->hasMany(Comment::class);
     }
+
+    // User - Comment relation
+    public function orders(){
+        return $this->hasMany(Order::class);
+    }
 }

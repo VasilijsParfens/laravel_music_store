@@ -21,11 +21,6 @@
             <div>
                 <button class="bg-blue-50 border-2 border-gray-400 w-full md:w-96 h-12 md:h-14 mt-8 rounded-lg font-martian text-lg hover:bg-slate-300 ease-in duration-75" type="submit">Login</button>
             </div>
-            <a href="/register">
-                <div class="bg-blue-50 border-2 border-gray-400 w-full md:w-96 h-12 md:h-14 mt-8 rounded-lg font-martian text-lg flex justify-center items-center hover:bg-slate-300 ease-in duration-75">
-                    <p>Register</p>
-                </div>
-            </a>
         </div>
 </div>
 

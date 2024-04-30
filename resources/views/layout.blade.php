@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@100..800&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c35bfed5f0.js" crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -21,29 +22,34 @@
 </head>
 
 <body class="bg-orange-50 font-mono">
-    <div class="ml-4 mt-10 mb-4 text-4xl font-martian">
+    <div class="ml-12 mt-10 mb-4 text-4xl font-martian">
         <a href="/">MusicStore</a>
     </div>
     @auth
     <li>
-        <form class="absolute top-10 right-2 w-24" method="POST" action="/logout">
+        <form class="absolute top-0 right-0 mt-14 mr-14 mb-24" method="POST" action="/logout">
           @csrf
-          <button type="submit" class="text-xl hover:underline">
-            Logout
+          <button type="submit" class="text-xl hover:underline" style="display: inline-flex; align-items: center;">
+            <i class="fa-solid fa-door-open"></i>
+            <span style="margin-left: 5px;">Logout</span>
           </button>
+
         </form>
     </li>
     @else
-    <div class="absolute top-0 right-0 mt-14 mr-14 mb-18">
-        <a href="/login" title="Account"><img src="/images/user.png" alt="Account" style="width:34px;"></a>
+    <div class="absolute top-0 right-0 mt-14 mr-14 mb-24">
+        <a href="/login" title="Account" class="text-xl"><i class="fa-solid fa-right-to-bracket fa-xl"></i> Login</a>
+    </div>
+    <div class="absolute top-0 right-0 mt-14 mr-44 mb-24">
+        <a href="/register" title="Account" class="text-xl"><i class="fa-solid fa-user-plus"></i> Register</a>
     </div>
     @endauth
     <hr class="border-t-2 border-gray-700">
     <li>
         <!-- Conditionally display Admin panel link -->
-        <div class="absolute top-10 right-44 w-32">
+        <div class="absolute top-0 right-0 mt-14 mr-52 mb-24">
             @if(auth()->check() && auth()->user()->is_admin)
-                <a href="/album_list" class="text-xl hover:underline">Admin Panel</a>
+                <a href="/album_list" class="text-xl hover:underline"><i class="fa-solid fa-hammer fa-lg"></i> Admin Panel</a>
             @endif
         </div>
     </li>

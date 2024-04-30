@@ -16,9 +16,11 @@
             <p class="my-1 text-xl text-slate-500">
                 {{$album['description']}}
             </p><br>
-            <p class="my-1 text-xl text-orange-600">
-                {{$album['price']}}$
-            </p>
+            @if(!$album->hasBeenPurchased())
+                <p class="my-1 text-xl text-orange-600">
+                    {{$album['price']}}$
+                </p>
+            @endif
         </div>
         <!-- Conditionally show or hide the purchase button -->
         @auth
@@ -39,6 +41,7 @@
         @endauth
     </div>
 </div>
+@auth
 <div class="flex justify-center mt-8">
     <form method="post" action="/albums/comment" class="flex items-center w-1/2">
         @csrf
@@ -47,6 +50,8 @@
         <button type="submit" class="p-4 bg-slate-300 rounded-xl w-52">Post Comment</button>
     </form>
 </div>
+@endauth
+
 <hr class="border-t-2 border-gray-700 mt-4">
 <div class="font-martian text-4xl text-center mt-4">
     <h1>Comments</h1>

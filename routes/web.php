@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CommentController;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\AuthenticateMiddleware;
 
 Route::group(['middleware' => AdminMiddleware::class], function () {
 
@@ -70,7 +71,19 @@ Route::get('/albums/{album}', [AlbumController::class, 'showComments']);
 Route::get('/register', [UserController::class, 'create']);
 
 // Users library of purchased items
-Route::get('/library', [OrderController::class, 'showLibrary'])->name('library');
+Route::get('/library', [OrderController::class, 'showLibrary'])->name('library')->middleware(AuthenticateMiddleware::class);
+
+// Show user comment history page
+Route::get('/comment_history', [CommentController::class, 'commentHistory'])->middleware(AuthenticateMiddleware::class);
+
+// Display authenticated user comments
+Route::get('/comment_history', [CommentController::class, 'thisUserComments'])->middleware(AuthenticateMiddleware::class);
+
+// Show user purchase history page
+Route::get('/purchase_history', [AlbumController::class, 'orderHistory'])->middleware(AuthenticateMiddleware::class);
+
+// Display authenticated user purchases
+Route::get('/purchase_history', [AlbumController::class, 'thisUserOrders'])->middleware(AuthenticateMiddleware::class);
 
 // Create user
 Route::post('/users', [UserController::class, 'store']);
@@ -85,4 +98,4 @@ Route::post('/users/authorize', [UserController::class, 'authorize']);
 Route::post('/logout', [UserController::class, 'logout']);
 
 // Purchase an album
-Route::post('/purchase', [AlbumController::class, 'purchase'])->name('purchase');
+Route::post('/purchase', [AlbumController::class, 'purchase'])->name('purchase')->middleware(AuthenticateMiddleware::class);

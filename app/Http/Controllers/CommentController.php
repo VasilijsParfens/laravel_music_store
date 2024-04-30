@@ -18,4 +18,14 @@ class CommentController extends Controller
         $comments = Comment::where('album_id', $albumId)->get();
         return view('albums.comment_list', compact('comments'));
     }
+
+    public function commentHistory(){
+        return view('users.comment_history');
+    }
+
+    public function thisUserComments(){
+        $user = auth()->user();
+        $comments = $user->comments()->latest()->get();
+        return view('users.comment_history', compact('comments'));
+    }
 }

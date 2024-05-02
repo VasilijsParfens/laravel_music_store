@@ -7,6 +7,7 @@
     <title>Albums</title>
     <link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@100..800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="sort.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -34,15 +35,16 @@
         </div>
     </nav>
 
-    <div class="flex justify-center mt-6"> <!-- Centering the table -->
-        <div class="max-w-4xl"> <!-- Adjusting the maximum width -->
+    <div class="flex justify-center items-center mr-56 mt-8"> <!-- Centering the table horizontally -->
+        <div class="max-w-4xl">
             @if(count($albums) > 0)
-                <table class="min-w-full divide-y divide-gray-200">
+                <table class="min-w-full divide-y divide-gray-200"> <!-- Centering the table horizontally -->
                     <thead class="bg-gray-100">
                         <tr>
-                            <th class="px-10 py-4 text-left text-sm font-medium text-gray-700 uppercase tracking-wider">Cover</th>
-                            <th class="px-10 py-4 text-left text-sm font-medium text-gray-700 uppercase tracking-wider">Artist</th>
-                            <th class="px-10 py-4 text-left text-sm font-medium text-gray-700 uppercase tracking-wider">Title</th>
+                            <th class="px-10 py-4 text-left text-sm font-medium text-gray-700 uppercase tracking-wider max-w-xs">Album Id</th>
+                            <th class="px-10 py-4 text-left text-sm font-medium text-gray-700 uppercase tracking-wider max-w-xs">Cover</th>
+                            <th class="px-10 py-4 text-left text-sm font-medium text-gray-700 uppercase tracking-wider max-w-xs">Artist</th>
+                            <th class="px-10 py-4 text-left text-sm font-medium text-gray-700 uppercase tracking-wider max-w-xs">Title</th>
                             <th class="px-10 py-4 text-left text-sm font-medium text-gray-700 uppercase tracking-wider">Price</th>
                             <th class="px-10 py-4 text-left text-sm font-medium text-gray-700 uppercase tracking-wider">Actions</th>
                         </tr>
@@ -50,6 +52,7 @@
                     <tbody class="bg-white divide-y divide-gray-200 text-xl">
                         @foreach($albums as $album)
                             <tr>
+                                <td class="px-10 py-6 whitespace-nowrap">{{ $album->id }}</td>
                                 <td class="px-26 py-6 whitespace-nowrap">
                                     <img class="w-35 h-35 rounded-lg" src="{{$album->album_cover ? asset('storage/' . $album->album_cover) : asset('/images/noimage.jpg')}}" alt="" />
                                 </td>
@@ -74,7 +77,6 @@
         </div>
     </div>
 
-
-
-
+    <a href="/albums/create" class="text-white bg-green-500 px-6 py-3 rounded-md hover:bg-green-600 fixed bottom-4 right-4 z-50">Create Album</a>
 </body>
+</html>

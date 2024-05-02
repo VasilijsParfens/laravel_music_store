@@ -24,21 +24,22 @@
 <hr class="border-t-2 border-gray-700 mt-4 w-1/3 mx-auto">
 
 <div class="flex justify-center"> <!-- Center the main container -->
-    <div class="flex flex-col items-center"> <!-- Wrap comment frames in a container -->
+    <div class="flex flex-col items-center w-1/2"> <!-- Wrap comment frames in a container -->
         @foreach ($comments as $comment)
-        <div class="ml-14 mt-4 bg-gray-200 rounded-xl border-2 border-gray-700 p-4 hover:bg-gray-300 duration-75 relative inline-block text-left w-1/2">
-            <div class="flex justify-start"> <!-- Align comment frame to the left -->
+        <a href="/albums/{{$comment->album->id}}">
+            <div class="ml-14 mt-4 w-full bg-gray-200 rounded-xl border-2 border-gray-700 p-4 hover:bg-gray-300 duration-75 relative inline-block text-left">
                 <div class="flex items-center">
                     <img class="w-24 h-24 rounded-xl" src="{{$comment->album->album_cover ? asset('storage/' . $comment->album->album_cover) : asset('/images/noimage.jpg')}}" alt="">
                     <p class="text-xl ml-6">  Album "{{$comment->album->title}}" by {{$comment->album->artist}}</p>
                 </div>
+                <hr class="border-t-2 border-gray-700 mt-2 mb-4">
+                <p class="text-xl ml-6 mb-2">{{ $comment->text }}</p>
+                <div class="absolute top-3 right-4">
+                    <p class="text-xl text-orange-600">{{ $comment->created_at->format('Y-m-d') }}</p>
+                </div>
             </div>
-            <hr class="border-t-2 border-gray-700 mt-2 mb-4">
-            <p class="text-xl">{{ $comment->text }}</p>
-            <div class="absolute bottom-3 right-4">
-                <p class="text-xl text-orange-600 mt-8">{{ $comment->created_at->format('Y-m-d') }}</p>
-            </div>
-        </div>
+        </a>
+
         @endforeach
     </div>
 </div>

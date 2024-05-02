@@ -40,6 +40,7 @@
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-100">
                         <tr>
+                            <th class="px-4 py-4 text-left text-sm font-medium text-gray-700 uppercase tracking-wider">User Id</th>
                             <th class="px-4 py-4 text-left text-sm font-medium text-gray-700 uppercase tracking-wider">Name</th>
                             <th class="px-4 py-4 text-left text-sm font-medium text-gray-700 uppercase tracking-wider">E-mail</th>
                             <th class="px-4 py-4 text-left text-sm font-medium text-gray-700 uppercase tracking-wider">Is_admin</th>
@@ -49,6 +50,7 @@
                     <tbody class="bg-white divide-y divide-gray-200 text-base">
                         @foreach($users as $user)
                             <tr>
+                                <td class="px-4 py-2 whitespace-nowrap">{{ $user->id }}</td>
                                 <td class="px-4 py-2 whitespace-nowrap">{{ $user->name }}</td>
                                 <td class="px-4 py-4 whitespace-nowrap">{{ $user->email }}</td>
                                 <td class="px-4 py-4 whitespace-nowrap">{{ $user->is_admin}}</td>

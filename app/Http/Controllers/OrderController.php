@@ -15,6 +15,23 @@ class OrderController extends Controller
         return view('albums.library', ['userOrders' => $userOrders]);
     }
 
+    // Show order list for admin
+    public function order_list(){
+        return view('albums.order_list');
+    }
+
+    // Show all orders
+    public function showAllorders(){
+        $orders = order::all();
+        return view('albums.order_list', compact('orders'));
+    }
+
+    // Delete order
+    public function destroy_order(Order $order) {
+        $order->delete();
+        return redirect('/order_list');
+    }
+
     public function getOrdersByUser($userId)
     {
         $orders = Order::where('user_id', $userId)->get();
@@ -27,7 +44,7 @@ class OrderController extends Controller
         return view('albums.order_list', compact('orders'));
     }
 
-    public function commentHistory(){
-        return view('users.comment_history');
+    public function orderHistory(){
+        return view('users.order_history');
     }
 }

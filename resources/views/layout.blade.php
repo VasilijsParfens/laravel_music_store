@@ -26,16 +26,14 @@
         <a href="/">MusicStore</a>
     </div>
     @auth
-    <li>
-        <form class="absolute top-0 right-0 mt-14 mr-14 mb-24" method="POST" action="/logout">
-          @csrf
-          <button type="submit" class="text-xl hover:underline" style="display: inline-flex; align-items: center;">
-            <i class="fa-solid fa-door-open"></i>
-            <span style="margin-left: 5px;">Logout</span>
-          </button>
+    <form class="absolute top-0 right-0 mt-14 mr-14 mb-24" method="POST" action="/logout">
+        @csrf
+        <button type="submit" class="text-xl hover:underline" style="display: inline-flex; align-items: center;">
+        <i class="fa-solid fa-door-open"></i>
+        <span style="margin-left: 5px;">Logout</span>
+        </button>
 
-        </form>
-    </li>
+    </form>
     @else
     <div class="absolute top-0 right-0 mt-14 mr-14 mb-24">
         <a href="/login" title="Account" class="text-xl"><i class="fa-solid fa-right-to-bracket fa-xl"></i> Login</a>
@@ -45,14 +43,12 @@
     </div>
     @endauth
     <hr class="border-t-2 border-gray-700">
-    <li>
-        <!-- Conditionally display Admin panel link -->
-        <div class="absolute top-0 right-0 mt-14 mr-52 mb-24">
-            @if(auth()->check() && auth()->user()->is_admin)
-                <a href="/album_list" class="text-xl hover:underline"><i class="fa-solid fa-hammer fa-lg"></i> Admin Panel</a>
-            @endif
-        </div>
-    </li>
+    <!-- Conditionally display Admin panel link -->
+    <div class="absolute top-0 right-0 mt-14 mr-52 mb-24">
+        @if(auth()->check() && auth()->user()->is_admin)
+            <a href="/album_list" class="text-xl hover:underline"><i class="fa-solid fa-hammer fa-lg"></i> Admin Panel</a>
+        @endif
+    </div>
 
     @yield('content')
 </body>

@@ -25,11 +25,12 @@
           <div>
             <p class="text-white text-xl font-bold">Admin Panel</p>
           </div>
-          <div class="flex justify-center space-x-40">
-            <a href="/" class="text-white text-xl px-10 py-6 rounded-lg hover:bg-amber-700">Home</a>
-            <a href="/album_list" class="text-white text-xl px-10 py-6 rounded-lg hover:bg-amber-700">Albums</a>
-            <a href="/user_list" class="text-white text-xl px-10 py-6 rounded-lg hover:bg-amber-700">Users</a>
-            <a href="/comment_list" class="text-white text-xl px-10 py-6 rounded-lg hover:bg-amber-700">Comments</a>
+          <div class="flex justify-center space-x-32">
+            <a href="/" class="text-white text-xl px-6 py-4 rounded-lg hover:bg-amber-700">Home</a>
+            <a href="/album_list" class="text-white text-xl px-6 py-4 rounded-lg hover:bg-amber-700">Albums</a>
+            <a href="/user_list" class="text-white text-xl px-6 py-4 rounded-lg hover:bg-amber-700">Users</a>
+            <a href="/comment_list" class="text-white text-xl px-6 py-4 rounded-lg hover:bg-amber-700">Comments</a>
+            <a href="/order_list" class="text-white text-xl px-6 py-4 rounded-lg hover:bg-amber-700">Orders</a>
           </div>
         </div>
     </nav>

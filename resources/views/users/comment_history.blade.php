@@ -20,29 +20,35 @@
     </div>
 </div>
 
-<h4 class="justify-center text-4xl text-center">Comments you wrote</h4>
+<h4 class="justify-center text-4xl text-center mx-auto">Comments you wrote</h4>
 <hr class="border-t-2 border-gray-700 mt-4 w-1/3 mx-auto">
 
-<div class="flex justify-center"> <!-- Center the main container -->
-    <div class="flex flex-col items-center w-1/2"> <!-- Wrap comment frames in a container -->
-        @foreach ($comments as $comment)
-        <a href="/albums/{{$comment->album->id}}">
-            <div class="ml-14 mt-4 w-full bg-gray-200 rounded-xl border-2 border-gray-700 p-4 hover:bg-gray-300 duration-75 relative inline-block text-left">
-                <div class="flex items-center">
-                    <img class="w-24 h-24 rounded-xl" src="{{$comment->album->album_cover ? asset('storage/' . $comment->album->album_cover) : asset('/images/noimage.jpg')}}" alt="">
-                    <p class="text-xl ml-6">  Album "{{$comment->album->title}}" by {{$comment->album->artist}}</p>
+<div class="flex justify-center">
+    <div class="flex flex-col items-center">
+        @if(count($comments) > 0)
+            @foreach ($comments as $comment)
+            <a href="/albums/{{$comment->album->id}}">
+                <div class="w-full mt-4 bg-gray-200 rounded-xl border-2 border-gray-700 p-4 hover:bg-gray-300 duration-75 relative inline-block text-left">
+                    <div class="flex items-center">
+                        <img class="w-24 h-24 rounded-xl" src="{{$comment->album->album_cover ? asset('storage/' . $comment->album->album_cover) : asset('/images/noimage.jpg')}}" alt="">
+                        <p class="text-xl ml-6">  Album "{{$comment->album->title}}" by {{$comment->album->artist}}</p>
+                    </div>
+                    <hr class="border-t-2 border-gray-700 mt-2 mb-4">
+                    <p class="text-xl ml-6 mb-2">{{ $comment->text }}</p>
+                    <div class="absolute top-3 right-4">
+                        <p class="text-xl text-orange-600">{{ $comment->created_at->format('Y-m-d') }}</p>
+                    </div>
                 </div>
-                <hr class="border-t-2 border-gray-700 mt-2 mb-4">
-                <p class="text-xl ml-6 mb-2">{{ $comment->text }}</p>
-                <div class="absolute top-3 right-4">
-                    <p class="text-xl text-orange-600">{{ $comment->created_at->format('Y-m-d') }}</p>
-                </div>
-            </div>
-        </a>
-
-        @endforeach
+            </a>
+            @endforeach
+        @else
+            <p class="text-center text-xl mt-8">No comments found</p>
+        @endif
     </div>
 </div>
+
+
+
 
 
 

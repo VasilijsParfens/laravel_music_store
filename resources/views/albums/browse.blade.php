@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="bg-orange-100 py-2">
+<div class="bg-orange-100 py-2 mt-8">
     <h4 class="justify-center text-4xl text-center">Browse for albums</h4>
     <hr class="border-t-2 border-gray-700 mt-4 w-1/3 mx-auto">
 
@@ -15,18 +15,19 @@
     <!-- Sorting Form -->
     <form action="{{ route('albums.sort') }}" method="GET" class="text-center mb-4 mt-4">
         <label for="sortBy" class="mr-2 text-lg">Sort by:</label>
-        <select name="sortBy" id="sortBy" class=" bg-white border border-gray-400 rounded-md px-4 py-1 text-center">
-            <option value="title">Title</option>
-            <option value="artist">Artist</option>
-            <option value="release_year">Release Year</option>
-            <option value="price">Price</option>
+        <select name="sortBy" id="sortBy" class="bg-white border border-gray-400 rounded-md px-4 py-1 text-center">
+            <option value="title" {{ $sortBy == 'title' ? 'selected' : '' }}>Title</option>
+            <option value="artist" {{ $sortBy == 'artist' ? 'selected' : '' }}>Artist</option>
+            <option value="release_year" {{ $sortBy == 'release_year' ? 'selected' : '' }}>Release Year</option>
+            <option value="price" {{ $sortBy == 'price' ? 'selected' : '' }}>Price</option>
         </select>
         <select name="order" id="order" class="bg-white border border-gray-400 rounded-md px-4 py-1 text-center">
-            <option value="asc">Ascending</option>
-            <option value="desc">Descending</option>
+            <option value="asc" {{ $order == 'asc' ? 'selected' : '' }}>Ascending</option>
+            <option value="desc" {{ $order == 'desc' ? 'selected' : '' }}>Descending</option>
         </select>
         <button type="submit" class="text-white text-lg py-1 px-5 rounded bg-amber-600 hover:bg-amber-700 duration-75 ">Sort</button>
     </form>
+
 </div>
 
 

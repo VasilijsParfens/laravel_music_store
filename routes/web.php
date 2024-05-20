@@ -39,11 +39,20 @@ Route::group(['middleware' => AdminMiddleware::class], function () {
     // Delete user
     Route::delete('/users/{user}', [UserController::class, 'destroy']);
 
+    // Order list for admin
+    Route::get('/order_list', [OrderController::class, 'order_list']);
+
+    // Show all orders for admin
+    Route::get('/order_list', [OrderController::class, 'showAllOrders']);
+
+    // Delete order
+    Route::delete('/orders/{order}', [OrderController::class, 'destroy_order']);
+
     // Comment list for admin
-    Route::get('/comment_list', [AlbumController::class, 'comment_list']);
+    Route::get('/comment_list', [CommentController::class, 'comment_list']);
 
     // Show all comments for admin
-    Route::get('/comment_list', [AlbumController::class, 'showAllComments']);
+    Route::get('/comment_list', [CommentController::class, 'showAllComments']);
 
     // Show comments that belong to specific user
     Route::get('/comments/user/{userId}', [CommentController::class, 'getCommentsByUser']);
@@ -52,7 +61,7 @@ Route::group(['middleware' => AdminMiddleware::class], function () {
     Route::get('/comments/album/{albumId}', [CommentController::class, 'getCommentsByAlbum']);
 
     // Delete comment
-    Route::delete('/comments/{comment}', [AlbumController::class, 'destroy_comment']);
+    Route::delete('/comments/{comment}', [CommentController::class, 'destroy_comment']);
 });
 
 
@@ -60,9 +69,6 @@ Route::get('/browse', [AlbumController::class, 'browseAllAlbums'])->name('albums
 Route::get('/albums/sort', [AlbumController::class, 'sort'])->name('albums.sort');
 Route::get('/albums/filter', [AlbumController::class, 'filter'])->name('albums.filter');
 
-
-// Display albums in browse section
-Route::get('/browse', [AlbumController::class, 'browseAllAlbums']);
 
 // New albums
 Route::get('/', [AlbumController::class, 'index']);

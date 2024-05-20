@@ -38,9 +38,12 @@ class AlbumController extends Controller
     public function browseAllAlbums()
     {
         $albums = Album::latest()->get(); // Default display
+        $sortBy = 'title'; // Default sorting by title
+        $order = 'asc'; // Default order ascending
 
-        return view('albums.browse', compact('albums'));
+        return view('albums.browse', compact('albums', 'sortBy', 'order'));
     }
+
 
     public function sort(Request $request)
     {
@@ -49,21 +52,27 @@ class AlbumController extends Controller
 
         $albums = Album::orderBy($sortBy, $order)->get();
 
-        return view('albums.browse', compact('albums'));
+        return view('albums.browse', compact('albums', 'sortBy', 'order'));
     }
 
-    public function filter(Request $request)
-    {
+    public function filter(Request $request){
         $keyword = $request->input('keyword');
+
+        // Retrieve sorting options if they are present in the request
+        $sortBy = $request->input('sortBy', 'title');
+        $order = $request->input('order', 'asc');
 
         $albums = Album::where('title', 'like', "%$keyword%")
             ->orWhere('artist', 'like', "%$keyword%")
             ->orWhere('release_year', 'like', "%$keyword%")
             ->orWhere('price', 'like', "%$keyword%")
+            ->orderBy($sortBy, $order)
             ->get();
 
-        return view('albums.browse', compact('albums'));
+        // Pass sortBy, order, and albums to the view
+        return view('albums.browse', compact('albums', 'sortBy', 'order'));
     }
+
 
     // Show single album
     public function show(Album $album){
@@ -184,23 +193,6 @@ class AlbumController extends Controller
         $album = Album::findOrFail($album_id);
         $comments = $album->comments()->with('user')->get();
         return view('albums.show', compact('album', 'comments'));
-    }
-
-    // Show comment list for admin
-    public function comment_list(){
-        return view('albums.comment_list');
-    }
-
-    // Show all comments
-    public function showAllComments(){
-        $comments = Comment::all();
-        return view('albums.comment_list', compact('comments'));
-    }
-
-    // Delete comment
-    public function destroy_comment(Comment $comment) {
-        $comment->delete();
-        return redirect('/comment_list');
     }
 
 }

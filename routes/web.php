@@ -70,6 +70,9 @@ Route::get('/albums/sort', [AlbumController::class, 'sort'])->name('albums.sort'
 Route::get('/albums/filter', [AlbumController::class, 'filter'])->name('albums.filter');
 
 
+// Display albums in browse section
+Route::get('/browse', [AlbumController::class, 'browseAllAlbums']);
+
 // New albums
 Route::get('/', [AlbumController::class, 'index']);
 

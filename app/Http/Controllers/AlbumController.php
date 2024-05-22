@@ -16,8 +16,8 @@ class AlbumController extends Controller
     // Show new albums
     public function index(){
 
-        // Fetch 9 newest albums by creation date
-        $newestAlbums = Album::latest()->take(8)->get();
+        // Fetch 4 newest albums by creation date
+        $newestAlbums = Album::latest()->take(4)->get();
 
         return view('albums.index', compact('newestAlbums'));
     }

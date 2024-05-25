@@ -43,4 +43,8 @@ class Album extends Model
         return false; // Return false if user is not authenticated
     }
 
+    public function moods()
+    {
+        return $this->belongsToMany(Mood::class, 'album_mood');
+    }
 }

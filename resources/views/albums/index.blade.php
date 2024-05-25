@@ -56,6 +56,35 @@
         </div>
         @endforeach
     </div>
+    <h4 class="justify-center text-4xl text-center">Bestsellers</h4>
+    <hr class="border-t-2 border-gray-700 mt-4 w-1/3 mx-auto">
+    <div class="grid gap-x-0.5 gap-y-4 grid-cols-4 mt-6">
+        @foreach($bestSellingAlbums as $album)
+            <div class="flex justify-center">
+                <div class="flex justify-center">
+                    <a href="/albums/{{$album->id}}">
+                        <div class="bg-slate-100 rounded-lg p-3 border-2 border-slate-500 mb-6 hover:bg-slate-200 duration-75">
+                            <img class="w-52 h-52 rounded-lg" src="{{$album->album_cover ? asset('storage/' . $album->album_cover) : asset('/images/noimage.jpg')}}" alt="" />
+                            <div class="font-martian">
+                                <div>
+                                    <p class="text-gray-400 text-xl">{{$album->artist}}</p>
+                                </div>
+                                <div>
+                                    <p class="text-xl w-52">{{$album->title}}</p>
+                                </div>
+                                <div>
+                                    <p class="text-orange-500 text-xl">{{$album->price}}$</p>
+                                </div>
+                                <div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            @endforeach
+    </div>
     @else
         <p>No albums found</p>
     @endif

@@ -6,6 +6,7 @@ use App\Models\Album;
 use App\Models\User;
 use App\Models\Comment;
 use App\Models\Order;
+use App\Models\Mood;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -285,6 +286,19 @@ class DatabaseSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
+        }
+
+        // Seed moods
+        $moods = [
+            'Happy', 'Sad', 'Energetic', 'Relaxed', 'Angry',
+            'Romantic', 'Melancholic', 'Uplifted', 'Calm',
+            'Excited', 'Nostalgic', 'Focused', 'Peaceful',
+            'Reflective', 'Surprised', 'Content', 'Determined',
+            'Hopeful', 'Anxious', 'Inspired'
+        ];
+
+        foreach ($moods as $mood) {
+            Mood::create(['name' => $mood]);
         }
 
     }

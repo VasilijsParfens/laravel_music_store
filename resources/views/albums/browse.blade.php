@@ -28,6 +28,17 @@
         <button type="submit" class="text-white text-lg py-1 px-5 rounded bg-amber-600 hover:bg-amber-700 duration-75 ">Sort</button>
     </form>
 
+    <form action="{{ route('albums.sortByMood') }}" method="GET" class="text-center mb-4 mt-4">
+        <label for="mood_id" class="mr-2 text-lg">Filter by Mood:</label>
+        <select name="mood_id" id="mood_id" class="bg-white border border-gray-400 rounded-md px-4 py-1 text-center">
+            @foreach($moods as $mood)
+                <option value="{{ $mood->id }}">{{ $mood->name }}</option>
+            @endforeach
+        </select>
+        <button type="submit" class="text-white text-lg py-1 px-5 rounded bg-amber-600 hover:bg-amber-700 duration-75">Sort</button>
+    </form>
+
+
 </div>
 
 

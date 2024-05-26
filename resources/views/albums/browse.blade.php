@@ -41,9 +41,8 @@
 
 </div>
 
-
+@if(count($albums) > 0)
 <div class="grid gap-x-0.5 gap-y-4 grid-cols-4 mt-6">
-    @if(count($albums) > 0)
         @foreach($albums as $album)
         <div class="flex justify-center">
             <div class="flex justify-center">
@@ -69,12 +68,9 @@
             </div>
         </div>
         @endforeach
-    </div>
-    @else
-        <p>No albums found</p>
-    @endif
-
-
-
+</div>
+@else
+    <p class="text-center text-xl mt-8">No albums found</p>
+@endif
 
 @endsection

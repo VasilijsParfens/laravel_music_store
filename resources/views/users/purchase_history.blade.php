@@ -54,7 +54,7 @@
                 </tbody>
             </table>
         @else
-            <p class="text-center">No orders found</p>
+            <p class="text-center text-xl mt-2">No orders found</p>
         @endif
     </div>
 </div>

@@ -71,6 +71,7 @@ Route::post('/logout', [UserController::class, 'logout']);
 // User library and history
 Route::get('/library', [OrderController::class, 'showLibrary'])->name('library')->middleware(AuthenticateMiddleware::class);
 Route::get('/comment_history', [CommentController::class, 'commentHistory'])->middleware(AuthenticateMiddleware::class);
+Route::get('/comment_history', [CommentController::class, 'thisUserComments'])->middleware(AuthenticateMiddleware::class);
 Route::get('/purchase_history', [AlbumController::class, 'orderHistory'])->middleware(AuthenticateMiddleware::class);
 Route::get('/purchase_history', [AlbumController::class, 'thisUserOrders'])->middleware(AuthenticateMiddleware::class);
 

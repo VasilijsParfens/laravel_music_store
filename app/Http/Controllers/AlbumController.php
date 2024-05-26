@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Album;
 use App\Models\Mood;
+use App\Models\Order;
 
 class AlbumController extends Controller
 {

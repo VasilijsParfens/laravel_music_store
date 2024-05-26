@@ -11,11 +11,11 @@
     <script>
         tailwind.config = {
             theme: {
-            extend: {
-                colors: {
-                laravel: '#ef3b2d',
+                extend: {
+                    colors: {
+                        laravel: '#ef3b2d',
+                    },
                 },
-            },
             },
         }
     </script>
@@ -26,29 +26,29 @@
         <a href="/">MusicStore</a>
     </div>
     @auth
-    <form class="absolute top-0 right-0 mt-14 mr-14 mb-24" method="POST" action="/logout">
-        @csrf
-        <button type="submit" class="text-xl hover:underline" style="display: inline-flex; align-items: center;">
-        <i class="fa-solid fa-door-open"></i>
-        <span style="margin-left: 5px;">Logout</span>
+    <div class="absolute top-0 right-0 mt-14 mb-24 flex items-center" style="margin-right: 2.5rem;">
+        @if(auth()->user()->is_admin)
+            <a href="/album_list" class="text-xl hover:underline mr-5"><i class="fa-solid fa-hammer fa-lg"></i> Admin Panel</a>
+        @endif
+        <button class="text-xl hover:underline mr-5" style="display: inline-flex; align-items: center;">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span style="margin-left: 5px;">Cart</span>
         </button>
-
-    </form>
-    @else
-    <div class="absolute top-0 right-0 mt-14 mr-14 mb-24">
-        <a href="/login" title="Account" class="text-xl"><i class="fa-solid fa-right-to-bracket fa-xl"></i> Login</a>
+        <form method="POST" action="/logout" class="inline-flex items-center">
+            @csrf
+            <button type="submit" class="text-xl hover:underline" style="display: inline-flex; align-items: center;">
+                <i class="fa-solid fa-door-open"></i>
+                <span style="margin-left: 5px;">Logout</span>
+            </button>
+        </form>
     </div>
-    <div class="absolute top-0 right-0 mt-14 mr-44 mb-24">
+    @else
+    <div class="absolute top-0 right-0 mt-14 mb-24 flex items-center" style="margin-right: 2.5rem;">
+        <a href="/login" title="Account" class="text-xl mr-5"><i class="fa-solid fa-right-to-bracket fa-xl"></i> Login</a>
         <a href="/register" title="Account" class="text-xl"><i class="fa-solid fa-user-plus"></i> Register</a>
     </div>
     @endauth
     <hr class="border-t-2 border-gray-700">
-    <!-- Conditionally display Admin panel link -->
-    <div class="absolute top-0 right-0 mt-14 mr-52 mb-24">
-        @if(auth()->check() && auth()->user()->is_admin)
-            <a href="/album_list" class="text-xl hover:underline"><i class="fa-solid fa-hammer fa-lg"></i> Admin Panel</a>
-        @endif
-    </div>
 
     @yield('content')
 </body>

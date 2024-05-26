@@ -25,7 +25,7 @@
 
 <div class="flex justify-center">
     <div class="flex flex-col items-center">
-        @if(count($comments) > 0)
+        @if(!is_null($comments) && count($comments) > 0)
             @foreach ($comments as $comment)
             <a href="/albums/{{$comment->album->id}}">
                 <div class="w-full mt-4 bg-gray-200 rounded-xl border-2 border-gray-700 p-4 hover:bg-gray-300 duration-75 relative inline-block text-left">
